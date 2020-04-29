@@ -1,0 +1,66 @@
+<div>
+  <ng-container *ngIf="isLoading">
+    <div class="loader"></div>
+  </ng-container>
+  <mat-toolbar color="light">
+    <h1 class="title">Zoom mvp</h1>
+    <button
+      type="button"
+      mat-button
+      color="basic"
+      (click)="onUpload()"
+      matTooltip="upload"
+    >
+      <mat-icon>file_upload</mat-icon>
+      Upload
+    </button>
+  </mat-toolbar>
+</div>
+<ng-container *ngIf="items?.length !== 0; else noRecord">
+  <mat-grid-list [cols]="isMobile ? 1 : 5" rowHeight="350px">
+    <mat-grid-tile *ngFor="let item of items" colspan="1" rowspan="1">
+      <mat-card class="example-card" *ngIf="item.isApproved">
+        <mat-card-header>
+          <img
+            mat-card-avatar
+            class="example-header-image"
+            [src]="user?.photoUrl"
+          />
+          <mat-card-title>{{ item.name }}</mat-card-title>
+          <mat-card-subtitle>{{ item.social_id }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="'assets/thumbnail/' + item.file.fileName"
+          alt="{{ item.file.fileName }}"
+        />
+        <mat-card-actions>
+          <a mat-button href="assets/uploads/{{ item.file.fileName }}"
+            ><mat-icon class="preview" matTooltip="preview"
+              >remove_red_eye</mat-icon
+            ></a
+          >
+          <a mat-button (click)="downloadImage(item)"
+            ><mat-icon class="download" matTooltip="download"
+              >get_app</mat-icon
+            ></a
+          >
+        </mat-card-actions>
+      </mat-card>
+      <ng-container *ngIf="!item.isApproved">
+        <div class="approval-text">
+          <p>
+            Image has been submitted for admin approval.
+          </p>
+        </div>
+      </ng-container>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
+<ng-template #noRecord>
+  <div class="center-paragraph">
+    <p>
+      Currently no images are available for this account, kindly upload images.
+    </p>
+  </div>
+</ng-template>

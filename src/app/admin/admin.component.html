@@ -1,0 +1,54 @@
+<mat-toolbar color="light">
+  <h1 class="title">Admin</h1>
+  <button
+    type="button"
+    mat-button
+    color="basic"
+    (click)="onLogout()"
+    matTooltip="logout"
+  >
+    <span class="material-icons">
+      exit_to_app
+    </span>
+    Logout
+  </button>
+</mat-toolbar>
+<div class="list">
+  <ng-container *ngIf="users?.length !== 0">
+    <mat-list>
+      <ng-container *ngFor="let user of users">
+        <mat-list-item
+          class="list-item z-depth-1"
+          [ngStyle]="{'background-color': user.isApproved ? '#f0f0f0' : ''}"
+        >
+          <img
+            class="avatar"
+            matListAvatar
+            src="assets/thumbnail/{{ user.file.fileName }}"
+            alt="image"
+          />
+          <h3 matLine>{{ user.name }}</h3>
+          <p matLine>
+            <span> {{ user.file.fileName }} </span>
+            <span> -- {{ user.file.fileType }} </span>
+          </p>
+          <span class="accept" (click)="onApprove('approve', user._id)"
+            ><mat-icon matTooltip="approve" matListIcon *ngIf="!user.isApproved"
+              >check</mat-icon
+            ></span
+          >
+          <span class="reject" (click)="onReject('reject', user._id)"
+            ><mat-icon matTooltip="reject" matListIcon>close</mat-icon></span
+          >
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </ng-container>
+  <ng-container *ngIf="users?.length === 0">
+    <mat-list class="z-depth-1">
+      <mat-list-item>
+        <p matLine>Sorry no images are found!</p>
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+</div>

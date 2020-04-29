@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>
+    Alert
+    <button
+      type="button"
+      mat-button
+      color="light"
+      class="close"
+      (click)="onClose()"
+    >
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </h1>
+  <hr />
+  <div mat-dialog-content>
+    <p class="content-text" *ngIf="!status">Do you really need to delete this image from our db?</p>
+    <p class="content-text" *ngIf="status">Do you really need to approve this image?</p>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      type="button"
+      mat-raised-button
+      color="warn"
+      (click)="reject()"
+    >
+    No
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="approve()"
+    >
+    Yes
+    </button>
+  </div>
+  

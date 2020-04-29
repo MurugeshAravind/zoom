@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>
+  Hello There!
+  <button
+    type="button"
+    mat-button
+    color="light"
+    class="close"
+    (click)="onClose()"
+  >
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</h1>
+<hr />
+<div mat-dialog-content>
+  <p class="content-text">You need to login with any of the below mentioned social network.</p>
+</div>
+<div mat-dialog-actions>
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    class="fb"
+    [mat-dialog-close]="false"
+  >
+  Continue with Facebook
+  </button>
+  <button
+    type="button"
+    mat-raised-button
+    color="warn"
+    class="google"
+    [mat-dialog-close]="true"
+  >
+  Login with Google
+  </button>
+</div>

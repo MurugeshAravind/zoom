@@ -1,0 +1,9 @@
+.title {
+    font-size: 2.5rem;
+    margin: auto;
+}
+/* styling the mat snackbar */
+::ng-deep .mat-snack-bar-container {
+    color: #fff !important;
+  }
+  

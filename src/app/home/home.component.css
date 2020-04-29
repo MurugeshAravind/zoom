@@ -1,0 +1,117 @@
+.title {
+  font-size: 2.5rem;
+  margin: auto;
+}
+.text {
+  margin-right: 10px;
+}
+.browse-button {
+  float: right;
+  cursor: pointer;
+}
+.loading-progress-bar {
+  margin-top: 40px !important;
+}
+.menu-spacer {
+  flex: 1 1 auto;
+}
+.example-card {
+  text-align: center;
+}
+.mat-card-image {
+  /* width: calc(100% + 32px); */
+  /* margin: 0 -16px 16px -16px; */
+  width: 100%;
+  height: 180px;
+}
+.grid {
+  margin-right: 20px;
+}
+.example-header-image {
+  background-size: cover;
+}
+
+.center-paragraph {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 15% auto;
+}
+
+.approval-text {
+  font-size: 1rem;
+  text-align: center;
+  margin: 15% auto;
+}
+
+.download:hover {
+  transform: scale(2);
+  color: #3390ff;
+}
+
+.preview:hover {
+  transform: scale(2);
+  color: #3390ff;
+}
+
+/* Loader CSS*/
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3e55d4; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* mobile phones */
+@media (max-width: 768px) {
+  .fb {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .google {
+    margin: 10px auto;
+    width: 100%;
+  }
+  .browse-button {
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+  }
+  .browse {
+    width: 80%;
+  }
+  .ok {
+    margin: 0px auto;
+    width: 100%;
+  }
+  .cancel {
+    margin: 5px auto;
+    width: 100%;
+  }
+  .mat-dialog-actions .mat-button-base + .mat-button-base {
+    margin: 5px auto;
+  }
+  .content-text {
+    text-align: center;
+  }
+  .image-name {
+    text-align: center;
+  }
+  .mat-content {
+    font-size: 16px;
+  }
+}

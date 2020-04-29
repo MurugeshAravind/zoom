@@ -1,0 +1,27 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+.error-title {
+  text-align: center;
+  margin: 10% auto;
+}
+.nav-button {
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  bottom: 100px;
+}
+.home-button:hover {
+  transform: scale(1.25);
+  background-color: black;
+  color: white;
+}
+
+/* For mobile phones: */
+@media (max-width: 768px) {
+  .nav-button {
+    position: relative;
+    bottom: auto;
+  }
+}
