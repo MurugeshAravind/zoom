@@ -90,9 +90,9 @@ export class HomeComponent implements OnInit {
     this.commonService.saveUser(user).subscribe(
       (res) => {
         console.log('response after saving-->', res);
+        this.getUser();
         if (res.data) {
           this.popUp.showMessage(res.data);
-          // this.getUser();
         } else {
           this.popUp.showMessage(res.message);
         }
