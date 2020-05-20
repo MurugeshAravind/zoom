@@ -1,4 +1,9 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  OnDestroy,
+} from '@angular/core';
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
@@ -12,10 +17,9 @@ import {
 } from 'angularx-social-login';
 import { ErrorService } from '../error.service';
 import { CommonService } from '../common.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export interface DialogData {
   firstName: string;
@@ -38,7 +42,7 @@ export class HomeComponent implements OnInit {
   matcher: MediaQueryList;
   public isMobile = false;
   basedOnView: any;
-  imageSrc = '';
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -47,7 +51,6 @@ export class HomeComponent implements OnInit {
     private commonService: CommonService,
     private breakpointObserver: BreakpointObserver,
     public mediaMatcher: MediaMatcher,
-    private sanitizer: DomSanitizer
   ) {
     // break point observer for mobiles
     this.breakpointObserver
@@ -56,17 +59,20 @@ export class HomeComponent implements OnInit {
         console.log(result);
         this.isMobile = result.matches;
       });
+    this.socialLoginInfo();
   }
   ngOnInit() {
+    this.getUser();
+  }
+
+  // Social login
+  socialLoginInfo() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = user != null;
       console.log('user info from social login-->', this.user);
       console.log('this.loggedIn info--->', this.loggedIn);
     });
-    this.getUser();
-    this.imageSrc = '../../../thumbnail/Murugesh.png';
-    this.sanitizer.bypassSecurityTrustUrl(this.imageSrc);
   }
 
   // For getting the user details from mongodb
@@ -86,7 +92,7 @@ export class HomeComponent implements OnInit {
         console.log('response after saving-->', res);
         if (res.data) {
           this.popUp.showMessage(res.data);
-          this.getUser();
+          // this.getUser();
         } else {
           this.popUp.showMessage(res.message);
         }

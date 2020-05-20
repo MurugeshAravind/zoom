@@ -59,9 +59,6 @@ var UsersSchema = new Schema({
   name: { type: String },
   file: { fileName: String, fileType: String },
   isApproved: { type: Boolean },
-  avatar: {
-    type: Buffer
-  }
 }, {
   timestamps: true
 });
