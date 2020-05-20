@@ -31,11 +31,11 @@
         </mat-card-header>
         <img
           mat-card-image
-          [src]="'assets/thumbnail/' + item.file.fileName"
+          src="assets/thumbnail/{{item.file.fileName}}"
           alt="{{ item.file.fileName }}"
         />
         <mat-card-actions>
-          <a mat-button href="assets/uploads/{{ item.file.fileName }}"
+          <a mat-button href="assets/uploads/{{item.file.fileName}}"
             ><mat-icon class="preview" matTooltip="preview"
               >remove_red_eye</mat-icon
             ></a

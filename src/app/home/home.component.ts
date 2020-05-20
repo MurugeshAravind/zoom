@@ -15,6 +15,7 @@ import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export interface DialogData {
   firstName: string;
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit {
   matcher: MediaQueryList;
   public isMobile = false;
   basedOnView: any;
+  imageSrc = '';
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -44,7 +46,8 @@ export class HomeComponent implements OnInit {
     private popUp: ErrorService,
     private commonService: CommonService,
     private breakpointObserver: BreakpointObserver,
-    public mediaMatcher: MediaMatcher
+    public mediaMatcher: MediaMatcher,
+    private sanitizer: DomSanitizer
   ) {
     // break point observer for mobiles
     this.breakpointObserver
@@ -62,6 +65,8 @@ export class HomeComponent implements OnInit {
       console.log('this.loggedIn info--->', this.loggedIn);
     });
     this.getUser();
+    this.imageSrc = '../../../thumbnail/Murugesh.png';
+    this.sanitizer.bypassSecurityTrustUrl(this.imageSrc);
   }
 
   // For getting the user details from mongodb
@@ -141,7 +146,7 @@ export class HomeComponent implements OnInit {
   downloadImage(item) {
     console.log('item-->', item);
     const a: any = document.createElement('a');
-    a.href = `../../assets/uploads/${item.file.fileName}`;
+    a.href = `../../uploads/${item.file.fileName}`;
     a.download = item.file.fileName;
     document.body.appendChild(a);
     a.style = 'display: none';

@@ -13,7 +13,7 @@ var jimp = require("jimp");
 // Using multer for storing the image files
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads");
+    cb(null, "/zoom/src/assets/uploads");
   },
   filename: function (req, file, cb) {
     cb(null, `${file.originalname}`);
@@ -59,6 +59,11 @@ var UsersSchema = new Schema({
   name: { type: String },
   file: { fileName: String, fileType: String },
   isApproved: { type: Boolean },
+  avatar: {
+    type: Buffer
+  }
+}, {
+  timestamps: true
 });
 
 var model = mongo.model("users", UsersSchema, "users");
@@ -128,12 +133,12 @@ app.get("/api/getUser", function (req, res) {
 function getThumbnail(filename) {
   console.log(filename);
   jimp
-    .read(`uploads/${filename}`, async (err, lenna) => {
+    .read(`/zoom/src/assets/uploads/${filename}`, async (err, lenna) => {
       if (err) throw err;
       await lenna
         .resize(250, 250) // resize
         .quality(100) // set JPEG quality
-        .writeAsync(`thumbnail/${filename}`); // save
+        .writeAsync(`/zoom/src/assets/thumbnail/${filename}`); // save
     })
     .then(() => {
       console.log("done");
